@@ -34,6 +34,10 @@ class AddressBook:
     def get_contacts(self):
         return self.contact  # Return full contact list
     
+    #method to get the contacts to count acc state/city
+    def get_contacts(self):
+        return self.contact
+    
      #Method to edit the contact that we found in find_contact method
     def edit_contacts(self,first_name,last_name):
         contact = self.find_contacts(first_name,last_name)

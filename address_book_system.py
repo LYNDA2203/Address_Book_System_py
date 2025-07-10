@@ -76,7 +76,33 @@ class AddressBookSystem:
             for book_name, contact in entries:
                 print(f"Address Book: {book_name}")
                 print(contact)
+                
+    #method to count contacts by state and city
+    def count_contacts_by_city_or_state(self):
+        if not self.book:
+            print("No address books available.")
+            return
 
+        group_type = input("Count by (city/state): ").strip().lower()
+        if group_type not in ['city', 'state']:
+            print("Invalid input. Please enter 'city' or 'state'.")
+            return
+
+        counts = defaultdict(int)
+
+        for book in self.book.values():
+            for contact in book.get_contacts():
+                key = contact.city if group_type == 'city' else contact.state
+                counts[key] += 1
+
+        if not counts:
+            print("No contacts found to count.")
+            return
+
+        print(f"\nContact Count by {group_type.capitalize()}:")
+        for place, count in counts.items():
+            print(f"{place}: {count} contact(s)")
+            
     #method to manage contacts of all the address book
     def manage_address_book(self, book_name):
         book = self.book[book_name]
