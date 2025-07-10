@@ -110,7 +110,8 @@ class AddressBookSystem:
             print(f"\n--- Managing '{book_name}'Address Book ---")
             print("1. Add Contact")
             print("2. View Contacts")
-            print("3. Go Back")
+            print("3. Sort Contacts by Name")#uc11 sorting by name
+            print("4. Go Back")
             choice = input("Enter choice: ").strip()
 
             if choice == "1":
@@ -130,6 +131,10 @@ class AddressBookSystem:
                 book.display_contacts()
 
             elif choice == "3":
+                book.sort_contacts_by_name()
+
+            elif choice == "4":
                 break
+            
             else:
                 print("Invalid choice.")

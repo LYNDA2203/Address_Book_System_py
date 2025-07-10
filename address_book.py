@@ -38,6 +38,13 @@ class AddressBook:
     def get_contacts(self):
         return self.contact
     
+    #method to sort the contacts by name
+    def sort_contacts_by_name(self):
+        sorted_contacts = sorted(self.contact, key=lambda c: (c.first_name.lower(), c.last_name.lower()))
+        print("\n Contacts Sorted Alphabetically by Name:")
+        for contact in sorted_contacts:
+            print(contact)
+    
      #Method to edit the contact that we found in find_contact method
     def edit_contacts(self,first_name,last_name):
         contact = self.find_contacts(first_name,last_name)
