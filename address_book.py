@@ -22,6 +22,14 @@ class AddressBook:
                 return contacts
         return None
     
+    #method to search the city and state as per the contact details
+    def search_by_city_state(self, location):
+        results = []
+        for c in self.contact:
+            if c.city.lower() == location.lower() or c.state.lower() == location.lower():
+                results.append(c)
+        return results
+    
      #Method to edit the contact that we found in find_contact method
     def edit_contacts(self,first_name,last_name):
         contact = self.find_contacts(first_name,last_name)
