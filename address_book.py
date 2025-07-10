@@ -38,12 +38,7 @@ class AddressBook:
     def get_contacts(self):
         return self.contact
     
-    #method to sort the contacts by name
-    def sort_contacts_by_name(self):
-        sorted_contacts = sorted(self.contact, key=lambda c: (c.first_name.lower(), c.last_name.lower()))
-        print("\n Contacts Sorted Alphabetically by Name:")
-        for contact in sorted_contacts:
-            print(contact)
+    
     
      #Method to edit the contact that we found in find_contact method
     def edit_contacts(self,first_name,last_name):
@@ -77,7 +72,31 @@ class AddressBook:
             
     #Method to display the details of contact       
     def display_contacts(self):
-        for cont in self.contact:
-            print(cont)
+        if not self.contacts:
+            print("Address Book is empty.")
+        else:
+            for contact in self.contacts:
+                print(contact)
+
+    #method to sort by city,state,zip
+    def sort_contacts(self, key):
+        if key == 'city':
+            sorted_contacts = sorted(self.contact, key=lambda c: c.city.lower())
+        elif key == 'state':
+            sorted_contacts = sorted(self.contact, key=lambda c: c.state.lower())
+        elif key == 'zip_code':
+            sorted_contacts = sorted(self.contact, key=lambda c: c.zip_code)
+        else:
+            print(" Invalid sort key.")
+            return
+
+        print(f"\nContacts sorted by {key.capitalize()}:")
+        for contact in sorted_contacts:
+            print(contact)
     
-   
+    #method to sort the contacts by name
+    def sort_contacts_by_name(self):
+        sorted_contacts = sorted(self.contact, key=lambda c: (c.first_name.lower(), c.last_name.lower()))
+        print("\n Contacts Sorted Alphabetically by Name:")
+        for contact in sorted_contacts:
+            print(contact)

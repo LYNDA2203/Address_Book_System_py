@@ -107,11 +107,15 @@ class AddressBookSystem:
     def manage_address_book(self, book_name):
         book = self.book[book_name]
         while True:
-            print(f"\n--- Managing '{book_name}'Address Book ---")
+            print(f"\n--- Managing '{book_name}' Address Book ---")
             print("1. Add Contact")
             print("2. View Contacts")
             print("3. Sort Contacts by Name")#uc11 sorting by name
-            print("4. Go Back")
+            #uc12- sorting contacts by city state and zip_code
+            print("4. Sort by City")
+            print("5. Sort by State")
+            print("6. Sort by Zip_code")
+            print("7. Go Back")
             choice = input("Enter choice: ").strip()
 
             if choice == "1":
@@ -132,9 +136,18 @@ class AddressBookSystem:
 
             elif choice == "3":
                 book.sort_contacts_by_name()
-
-            elif choice == "4":
-                break
             
+            elif choice == "4":
+                book.sort_contacts("city")
+
+            elif choice == "5":
+                book.sort_contacts("state")
+
+            elif choice == "6":
+                book.sort_contacts("zip_code")
+
+            elif choice == "7":
+                break
+             
             else:
                 print("Invalid choice.")
