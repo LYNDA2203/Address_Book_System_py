@@ -31,8 +31,10 @@ if __name__ == "__main__":
             system.add_address_book()
         elif choice == "2":
             system.view_address_books()
-        elif choice == "3":
-            print("Exiting Address Book System")
+        elif choice == "4":
+            system.search_contacts_by_city_state()
+        elif choice == "5":
+            print(" Exiting Address Book System.")
             break
         else:
             print("Invalid choice. Please try again.")
