@@ -1,4 +1,5 @@
 from contacts import Contacts
+import csv
 
 class AddressBook:
     #initializing the constuctor to add the attribute of contact
@@ -122,3 +123,29 @@ class AddressBook:
             print(f"File {filename} not found.")
         except Exception as e:
             print("Error reading file:", e)
+
+    #method to save the contact to csv file
+    def save_to_csv(self, filename):
+        try:
+            with open(filename, 'w', newline='') as csvfile:
+                fieldnames = ["First Name", "Last Name", "Address", "City", "State", "Zip Code", "Phone", "Email"]
+                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+                writer.writeheader()
+                for contact in self.contact:
+                    writer.writerow(contact.to_dict())
+            print(f"Contacts saved to CSV file: {filename}")
+        except Exception as e:
+            print("Error saving CSV file:", e)
+
+    #method to load to csv file
+    def load_from_csv(self, filename):
+        try:
+            with open(filename, 'r', newline='') as csvfile:
+                reader = csv.DictReader(csvfile)
+                self.contact = [Contacts.from_dict(row) for row in reader]
+            print(f"Contacts loaded from CSV file: {filename}")
+        except FileNotFoundError:
+            print(f"CSV file '{filename}' not found.")
+        except Exception as e:
+            print("Error loading CSV file:", e)

@@ -32,3 +32,25 @@ class Contacts:
     def from_line(line):
         parts = line.strip().split('|')
         return Contacts(*parts)
+    
+    #method to return string into dict to push to csv file
+    def to_dict(self):
+        return {
+            "First Name": self.first_name,
+            "Last Name": self.last_name,
+            "Address": self.address,
+            "City": self.city,
+            "State": self.state,
+            "Zip Code": self.zip_code,
+            "Phone": self.phone_number,
+            "Email": self.email_id
+        }
+
+    # returning the details form Contact class
+    @staticmethod
+    def from_dict(data):
+        return Contacts(
+            data["First Name"], data["Last Name"], data["Address"],
+            data["City"], data["State"], data["Zip Code"],
+            data["Phone"], data["Email"]
+        )

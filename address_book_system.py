@@ -120,7 +120,10 @@ class AddressBookSystem:
             #uc13- writing and reading from the file
             print("7. Save to File")
             print("8. Load from File")
-            print("9. Go Back")
+             # UC13 Save to CSV and load from csv file
+            print("9. Save to CSV File")  
+            print("10. Load from CSV File")
+            print("11. Go Back")
             choice = input("Enter choice: ").strip()
 
             if choice == "1":
@@ -158,6 +161,14 @@ class AddressBookSystem:
                 book.load_from_file(file_name)
 
             elif choice == "9":
+                csv_file = f"{book_name}_contacts.csv"
+                book.save_to_csv(csv_file)
+
+            elif choice == "10":
+                csv_file = f"{book_name}_contacts.csv"
+                book.load_from_csv(csv_file)
+            
+            elif choice == "11":
                 break
              
             else:
