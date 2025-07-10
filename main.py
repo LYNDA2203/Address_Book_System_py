@@ -42,7 +42,7 @@ if __name__ == "__main__":
         elif choice == "5":
             system.count_contacts_by_city_or_state()
         elif choice == "6":
-            print(" Exiting Address Book System.")
+            print("Exiting Address Book System.")
             break
         else:
             print("Invalid choice. Please try again.")

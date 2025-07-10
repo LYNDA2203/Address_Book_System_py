@@ -1,5 +1,6 @@
 from contacts import Contacts
 import csv
+import json
 
 class AddressBook:
     #initializing the constuctor to add the attribute of contact
@@ -149,3 +150,24 @@ class AddressBook:
             print(f"CSV file '{filename}' not found.")
         except Exception as e:
             print("Error loading CSV file:", e)
+     
+     #method to save as json file       
+    def save_to_json(self, filename):
+        try:
+            with open(filename, 'w') as jsonfile:
+                json.dump([contact.to_dict() for contact in self.contact], jsonfile, indent=4)
+            print(f"Contacts saved to JSON file: {filename}")
+        except Exception as e:
+            print("Error saving JSON file:", e)
+
+    #method to load form json file
+    def load_from_json(self, filename):
+        try:
+            with open(filename, 'r') as jsonfile:
+                data = json.load(jsonfile)
+                self.contact = [Contacts.from_dict(contact) for contact in data]
+            print(f"Contacts loaded from JSON file: {filename}")
+        except FileNotFoundError:
+            print(f" JSON file '{filename}' not found.")
+        except Exception as e:
+            print("Error loading JSON file:", e)

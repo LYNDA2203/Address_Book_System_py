@@ -123,7 +123,10 @@ class AddressBookSystem:
              # UC13 Save to CSV and load from csv file
             print("9. Save to CSV File")  
             print("10. Load from CSV File")
-            print("11. Go Back")
+             # UC14 Save to JSON and load from JSON file
+            print("11. Save to JSON File")  
+            print("12. Load from JSON File")
+            print("13. Go Back")
             choice = input("Enter choice: ").strip()
 
             if choice == "1":
@@ -167,8 +170,16 @@ class AddressBookSystem:
             elif choice == "10":
                 csv_file = f"{book_name}_contacts.csv"
                 book.load_from_csv(csv_file)
-            
+                
             elif choice == "11":
+                json_file = f"{book_name}_contacts.json"
+                book.save_to_json(json_file)
+
+            elif choice == "12":
+                json_file = f"{book_name}_contacts.json"
+                book.load_from_json(json_file)
+            
+            elif choice == "13":
                 break
              
             else:
