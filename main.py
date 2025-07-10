@@ -23,7 +23,7 @@ if __name__ == "__main__":
     system = AddressBookSystem()
 
     while True:
-        print("\n--- Address Book System --- \n1. Add Address Book \n2. View All Address Books \n3. Exit")
+        print("\n--- Address Book System --- \n1. Add Address Book \n2. View All Address Books \n3. Search Contacts by City or State \n4. Exit")
 
         choice = input("Enter choice: ").strip()
 
@@ -31,9 +31,9 @@ if __name__ == "__main__":
             system.add_address_book()
         elif choice == "2":
             system.view_address_books()
-        elif choice == "4":
+        elif choice == "3":
             system.search_contacts_by_city_state()
-        elif choice == "5":
+        elif choice == "4":
             print(" Exiting Address Book System.")
             break
         else:

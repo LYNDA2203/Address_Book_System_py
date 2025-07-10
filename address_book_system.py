@@ -36,16 +36,16 @@ class AddressBookSystem:
         location = input("Enter City or State to search: ").strip()
         found = False
 
-        for book_name, book in self.books.items():
+        for book_name, book in self.book.items():
             results = book.search_by_city_state(location)
             if results:
-                print(f"\n📘 Address Book: {book_name}")
+                print(f"\n Address Book: {book_name}")
                 for contact in results:
                     print(contact)
                 found = True
 
         if not found:
-            print("❌ No contacts found for the given city or state.")
+            print(" No contacts found for the given city or state.")
 
 
     #method to manage contacts of all the address book
