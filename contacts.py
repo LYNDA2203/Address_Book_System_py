@@ -10,7 +10,6 @@ class Contacts:
         self.phone_number = phone_number
         self.email_id = email_id
     
-      
     
     def __str__(self):
         return (
