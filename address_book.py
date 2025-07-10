@@ -10,7 +10,7 @@ class AddressBook:
         # Manual duplicate check
         for c in self.contact:
             if c.first_name.lower() == contact.first_name.lower() and c.last_name.lower() == contact.last_name.lower():
-                print(f" Duplicate contact: {contact.first_name} {contact.last_name}")
+                print(f"Duplicate contact: {contact.first_name} {contact.last_name} already present in current address book")
                 return
         self.contact.append(contact)
         print(" Contact added successfully.")
