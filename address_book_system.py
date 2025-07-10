@@ -1,7 +1,9 @@
 from  address_book import AddressBook
 from contacts import Contacts
+from collections import defaultdict
 
 class AddressBookSystem:
+    
     #creating construtor to enter the address book
     def __init__(self):
         self.book = {}
@@ -46,7 +48,34 @@ class AddressBookSystem:
 
         if not found:
             print(" No contacts found for the given city or state.")
+    
+    #method to group the city and state of contact
+    def group_contacts_by_city_or_state(self):
+        if not self.book:
+            print("No address books available.")
+            return
 
+        group_type = input("Group by (city/state): ").strip().lower()
+        if group_type not in ['city', 'state']:
+            print("Invalid choice. Please enter 'city' or 'state'.")
+            return
+
+        grouped = defaultdict(list)
+
+        for book_name, book in self.book.items():
+            for contact in book.get_contacts():
+                key = contact.city if group_type == 'city' else contact.state
+                grouped[key].append((book_name, contact))
+
+        if not grouped:
+            print("No contacts found to group.")
+            return
+
+        for group_value, entries in grouped.items():
+            print(f"\n {group_type.capitalize()}: {group_value}")
+            for book_name, contact in entries:
+                print(f"Address Book: {book_name}")
+                print(contact)
 
     #method to manage contacts of all the address book
     def manage_address_book(self, book_name):
@@ -59,14 +88,14 @@ class AddressBookSystem:
             choice = input("Enter choice: ").strip()
 
             if choice == "1":
-                first_name = input("First Name: ").strip()
-                last_name = input("Last Name : ").strip()
-                address = input("Address : ").strip()
-                city = input("City     : ").strip()
-                state = input("State   : ").strip()
-                zip_code = input("Zip Code : ").strip()
-                phone = input("Phone  : ").strip()
-                email = input("Email  : ").strip()
+                first_name = input("First Name  : ").strip()
+                last_name = input("Last Name   : ").strip()
+                address = input("Address     : ").strip()
+                city = input("City        : ").strip()
+                state = input("State       : ").strip()
+                zip_code = input("Zip Code    : ").strip()
+                phone = input("Phone       : ").strip()
+                email = input("Email      : ").strip()
 
                 contact = Contacts(first_name, last_name, address, city, state, zip_code, phone, email)
                 book.add_contacts(contact)

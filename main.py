@@ -23,17 +23,22 @@ if __name__ == "__main__":
     system = AddressBookSystem()
 
     while True:
-        print("\n--- Address Book System --- \n1. Add Address Book \n2. View All Address Books \n3. Search Contacts by City or State \n4. Exit")
+        print("\n--- Address Book System --- \n1. Add Address Book \n2. View All Address Books \n3. Search Contacts by City or State \n4. View Contacts Grouped by City/State\n5. Exit")
 
         choice = input("Enter choice: ").strip()
 
         if choice == "1":
             system.add_address_book()
+        #uc7-no duplicate contact
         elif choice == "2":
             system.view_address_books()
+        #uc8-searching by state and city
         elif choice == "3":
             system.search_contacts_by_city_state()
+        #uc9-grouping by state and city
         elif choice == "4":
+            system.group_contacts_by_city_or_state()
+        elif choice == "5":
             print(" Exiting Address Book System.")
             break
         else:
