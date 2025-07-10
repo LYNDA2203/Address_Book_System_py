@@ -105,7 +105,9 @@ class AddressBookSystem:
             
     #method to manage contacts of all the address book
     def manage_address_book(self, book_name):
+        file_name = f"{book_name}_contacts.txt"  #  Use book name to generate filename
         book = self.book[book_name]
+        
         while True:
             print(f"\n--- Managing '{book_name}' Address Book ---")
             print("1. Add Contact")
@@ -115,7 +117,10 @@ class AddressBookSystem:
             print("4. Sort by City")
             print("5. Sort by State")
             print("6. Sort by Zip_code")
-            print("7. Go Back")
+            #uc13- writing and reading from the file
+            print("7. Save to File")
+            print("8. Load from File")
+            print("9. Go Back")
             choice = input("Enter choice: ").strip()
 
             if choice == "1":
@@ -145,8 +150,14 @@ class AddressBookSystem:
 
             elif choice == "6":
                 book.sort_contacts("zip_code")
-
+                
             elif choice == "7":
+                book.save_to_file(file_name)
+
+            elif choice == "8":
+                book.load_from_file(file_name)
+
+            elif choice == "9":
                 break
              
             else:

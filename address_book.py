@@ -22,22 +22,7 @@ class AddressBook:
                 return contacts
         return None
     
-    #method to search the city and state as per the contact details
-    def search_by_city_state(self, location):
-        results = []
-        for c in self.contact:
-            if c.city.lower() == location.lower() or c.state.lower() == location.lower():
-                results.append(c)
-        return results
-    
-    #method to get the contacts form contact class
-    def get_contacts(self):
-        return self.contact  # Return full contact list
-    
-    #method to get the contacts to count acc state/city
-    def get_contacts(self):
-        return self.contact
-    
+   
     
     
      #Method to edit the contact that we found in find_contact method
@@ -69,6 +54,22 @@ class AddressBook:
             cont = input("Do you want to add another contact? (y/n): ")
             if cont != "y":
                 break
+     #method to search the city and state as per the contact details
+    def search_by_city_state(self, location):
+        results = []
+        for c in self.contact:
+            if c.city.lower() == location.lower() or c.state.lower() == location.lower():
+                results.append(c)
+        return results
+    
+    #method to get the contacts form contact class
+    def get_contacts(self):
+        return self.contact  # Return full contact list
+    
+    #method to get the contacts to count acc state/city
+    def get_contacts(self):
+        return self.contact
+    
             
     #Method to display the details of contact       
     def display_contacts(self):
@@ -78,6 +79,13 @@ class AddressBook:
             for contact in self.contacts:
                 print(contact)
 
+     #method to sort the contacts by name
+    def sort_contacts_by_name(self):
+        sorted_contacts = sorted(self.contact, key=lambda c: (c.first_name.lower(), c.last_name.lower()))
+        print("\n Contacts Sorted Alphabetically by Name:")
+        for contact in sorted_contacts:
+            print(contact)
+            
     #method to sort by city,state,zip
     def sort_contacts(self, key):
         if key == 'city':
@@ -93,10 +101,24 @@ class AddressBook:
         print(f"\nContacts sorted by {key.capitalize()}:")
         for contact in sorted_contacts:
             print(contact)
-    
-    #method to sort the contacts by name
-    def sort_contacts_by_name(self):
-        sorted_contacts = sorted(self.contact, key=lambda c: (c.first_name.lower(), c.last_name.lower()))
-        print("\n Contacts Sorted Alphabetically by Name:")
-        for contact in sorted_contacts:
-            print(contact)
+            
+    #method to write the contacts into file
+    def save_to_file(self, filename):
+        try:
+            with open(filename, 'w') as file:
+                for contact in self.contact:
+                    file.write(contact.to_line() + '\n')
+            print(f"Contacts saved to {filename}")
+        except Exception as e:
+            print("Error saving file:", e)
+
+    #method to read the content from the file
+    def load_from_file(self, filename):
+        try:
+            with open(filename, 'r') as file:
+                self.contact = [Contacts.from_line(line) for line in file.readlines()]
+            print(f"Contacts loaded from {filename}")
+        except FileNotFoundError:
+            print(f"File {filename} not found.")
+        except Exception as e:
+            print("Error reading file:", e)

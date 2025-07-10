@@ -23,3 +23,12 @@ class Contacts:
         f"Email ID     : {self.email_id}\n"
         "---------------------------"
     )
+    #method to split the contact into parts
+    def to_line(self):
+        return f"{self.first_name}|{self.last_name}|{self.address}|{self.city}|{self.state}|{self.zip_code}|{self.phone_number}|{self.email_id}"
+
+    # method to return the splited parts form class Contacts
+    @staticmethod
+    def from_line(line):
+        parts = line.strip().split('|')
+        return Contacts(*parts)
